@@ -1,0 +1,15 @@
+import { products } from '@/data/products';
+import Image from 'next/image';
+import type { Product } from '@/data/products';
+
+export default function Footer({ product }: { product: Product }) {
+  return <footer id="find-us" style={{ backgroundColor: product.palette.footer }} className="px-6 py-16 text-[#f4efdf] md:px-12 md:py-20">
+    <div className="mx-auto grid max-w-[1240px] gap-12 md:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+      <div><a href="#top" aria-label="Bikanodrink home" className="inline-block"><Image src="/logo/logo.svg" alt="Bikanodrink" width={133} height={77} className="h-14 w-auto object-contain" /></a><p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">A little more flavour for the moments that make your day.</p></div>
+      <div><h3 style={{ color: product.palette.footerAccent }} className="text-[10px] font-semibold uppercase tracking-[.2em]">Flavours</h3><div className="mt-5 grid gap-3 text-sm text-white/65">{products.map((item) => <a key={item.id} href="#flavours" className="hover:text-white">{item.name}</a>)}</div></div>
+      <div><h3 style={{ color: product.palette.footerAccent }} className="text-[10px] font-semibold uppercase tracking-[.2em]">Support</h3><div className="mt-5 grid gap-3 text-sm text-white/65"><a href="mailto:hello@bikano.com?subject=FAQ" className="hover:text-white">FAQ</a><a href="mailto:hello@bikano.com?subject=Shipping" className="hover:text-white">Shipping</a><a href="mailto:hello@bikano.com?subject=Returns" className="hover:text-white">Returns</a><a href="mailto:hello@bikano.com" className="hover:text-white">Contact us</a></div></div>
+      <div><h3 style={{ color: product.palette.footerAccent }} className="text-[10px] font-semibold uppercase tracking-[.2em]">A good note now and then</h3><form action="mailto:hello@bikano.com" method="get" className="mt-4 grid gap-3"><input type="hidden" name="subject" value="Bikano updates" /><label htmlFor="footer-note" className="sr-only">Your note</label><textarea id="footer-note" name="body" required rows={3} placeholder="Write your note..." className="w-full resize-y rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-[#c89950] focus:outline-none focus:ring-1 focus:ring-[#c89950]" /><button type="submit" style={{ backgroundColor: product.palette.footerAccent }} className="min-h-11 rounded-full px-5 text-xs font-semibold uppercase tracking-[.16em] text-[#1d2119] transition hover:brightness-110">Send</button></form></div>
+    </div>
+    <div className="mx-auto mt-16 flex max-w-[1240px] flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[.15em] text-white/35 md:flex-row"><span>© {new Date().getFullYear()} Bikano. Made for good moments.</span><nav aria-label="Legal" className="flex gap-5"><a href="#privacy-policy" className="transition hover:text-white/70">Privacy Policy</a><a href="#terms-of-service" className="transition hover:text-white/70">Terms of Service</a></nav></div>
+  </footer>;
+}
